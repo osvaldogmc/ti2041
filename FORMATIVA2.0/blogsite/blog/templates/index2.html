@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mi Blog</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <header class="head">
+        <div>
+            <h1>Mi Blog</h1>
+        </div>
+        <div>
+            <button onclick="location.href='/admin'">Administrar publicaciones</button>
+        </div>
+    </header>
+    <div class="container">
+        <div class="content">
+            <div class="entry">
+                <h2>{{ publi.0.title }}</h2>
+                <p>{{ publi.0.content }}</p>
+                <p>Publicado el: {{ publi.0.date }}</p>
+                
+                <p>Categorías:</p>
+                <ul>
+                    {% for category in categories %}
+                    <li>{{ category.nombre }}</li>
+                    {% endfor %}
+                </ul>
+                
+                <p>Hashtags:</p>
+                <ul>
+                    {% for hash in hashtag %}
+                    <li>{{ hash.nombre }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        
+        <div class="sidebar">
+            <h2>Lista de Publicaciones</h2>
+            <ul>
+                {% for posts in publi %}
+                <li class="entry-item"><a href="">{{ posts.title }}</a></li>
+                {% endfor %}
+                <br>
+                <br>
+                <p>Categorías:</p>
+                <ul>
+                    {% for category in categories %}
+                    <li><a href="#">{{ category.nombre }}</a></li>
+                    {% endfor %}
+                </ul>
+                <br>
+                <br>
+                <p>Hashtags:</p>
+                <ul>
+                    {% for hash in hashtag %}
+                    <li><a href="#">{{ hash.nombre }}</a></li>
+                    {% endfor %}
+                </ul>
+            </ul>
+        </div>
+    </div>       
+    <div class="footer">
+            Creado por Osvaldo Morales <sup>&copy;</sup> Todos los derechos reservados.
+    </div>
+</body>
+</html>
